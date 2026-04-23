@@ -3,7 +3,7 @@
 # .gitignore
 # ============================================================
 
-# ─── Project Context (Internal, not for repo) ───────────────
+# ─── Project Context (Internal notes, not for repo) ─────────
 project_context_updated.md
 Prompt.txt
 
@@ -13,7 +13,6 @@ __pycache__/
 *$py.class
 *.pyo
 *.pyd
-.Python
 *.egg
 *.egg-info/
 dist/
@@ -31,35 +30,47 @@ ENV/
 .ipynb_checkpoints/
 *.ipynb
 
-# ─── Large Data Files ───────────────────────────────────────
-# Raw datasets — too large for git (use download_data.py to fetch)
+# ─── Data — everything except the 30 test images used by real_data_demo.py ──
 data/Intersection-traffic-detection.yolov8/
 data/Intersection-traffic-detection.yolov8.zip
 data/real_traffic_video.mp4
 data/charoenphool_images/
 data/intersection_images/
-# Only keep test split (30 images used in Step 11)
+# Exclude all splits of real_images except test/images/
 data/real_images/train/
 data/real_images/valid/
+data/real_images/test/labels/       # label .txt files — not read by demo
+data/real_images/*.yaml             # dataset config files
 
 # ─── Archives ───────────────────────────────────────────────
 archive.zip
 files.zip
 files2.zip
 *.zip
-# Exception: trained model zips in results/ are small (≈145 KB each)
+# Exception: trained PPO model zips (≈145 KB each) — needed by real_data_demo.py
 !results/ppo_groundtruth_model.zip
 !results/ppo_classical_model.zip
 
-# ─── YOLOv8 Pretrained Weights ──────────────────────────────
-# Download from ultralytics at runtime — do not track
-yolov8n.pt
-yolov8s.pt
-yolov8*.pt
+# ─── YOLOv8 Pretrained Weights — downloaded at runtime ──────
 *.pt
 *.pth
 *.onnx
 *.weights
+
+# ─── PPT Presentations ──────────────────────────────────────
+PPTS/
+
+# ─── Unused Test/Debug Scripts ──────────────────────────────
+test_env.py
+test_step2.py
+test_step3.py
+test_traci.py
+test_traci_connection.py
+test_screenshot_zoomed.png
+
+# ─── Unused Download Helper Scripts ─────────────────────────
+real_world/download_charoenphool.py
+real_world/download_intersection.py
 
 # ─── Results — Large / Auto-Generated ───────────────────────
 results/tensorboard_logs/
@@ -67,10 +78,10 @@ results/checkpoints_ppo_*/
 results/best_ppo_*/
 results/real_world/annotated_images/
 results/real_world/*.mp4
-# Keep: results/*.json, results/plots/, results/real_world/*.json & *.jpg
-
-# ─── Screenshots & Debug Images ─────────────────────────────
-test_screenshot_zoomed.png
+results/Screenshot_7.png
+results/cv_debug.png
+results/yolo_debug.png
+# Keep: results/ppo_*_model.zip, results/*.json, results/plots/, results/real_world/*.json & *.jpg
 
 # ─── OS / IDE ────────────────────────────────────────────────
 .DS_Store
@@ -80,7 +91,6 @@ desktop.ini
 .vscode/
 *.suo
 *.user
-*.sln.docstates
 
 # ─── Logs ───────────────────────────────────────────────────
 *.log
