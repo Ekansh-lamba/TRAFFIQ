@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  linkIndex grouping (must match tll.xml state string positions):
+    0-2  : north_in  movements  (NS group)
+    3-5  : south_in  movements  (NS group)
+    6-8  : east_in   movements  (EW group)
+    9-11 : west_in   movements  (EW group)
+
+  NS phases  control indices 0-5
+  EW phases  control indices 6-11
+-->
+<connections>
+
+    <!-- ── north_in (vehicle travelling southward) ── -->
+    <connection from="north_in" to="south_out" fromLane="0" toLane="0"
+                tl="center" linkIndex="0"/>   <!-- straight      -->
+    <connection from="north_in" to="west_out"  fromLane="0" toLane="0"
+                tl="center" linkIndex="1"/>   <!-- right (→ W)  -->
+    <connection from="north_in" to="east_out"  fromLane="0" toLane="0"
+                tl="center" linkIndex="2"/>   <!-- left  (→ E)  -->
+
+    <!-- ── south_in (vehicle travelling northward) ── -->
+    <connection from="south_in" to="north_out" fromLane="0" toLane="0"
+                tl="center" linkIndex="3"/>   <!-- straight      -->
+    <connection from="south_in" to="east_out"  fromLane="0" toLane="0"
+                tl="center" linkIndex="4"/>   <!-- right (→ E)  -->
+    <connection from="south_in" to="west_out"  fromLane="0" toLane="0"
+                tl="center" linkIndex="5"/>   <!-- left  (→ W)  -->
+
+    <!-- ── east_in (vehicle travelling westward) ── -->
+    <connection from="east_in"  to="west_out"  fromLane="0" toLane="0"
+                tl="center" linkIndex="6"/>   <!-- straight      -->
+    <connection from="east_in"  to="north_out" fromLane="0" toLane="0"
+                tl="center" linkIndex="7"/>   <!-- right (→ N)  -->
+    <connection from="east_in"  to="south_out" fromLane="0" toLane="0"
+                tl="center" linkIndex="8"/>   <!-- left  (→ S)  -->
+
+    <!-- ── west_in (vehicle travelling eastward) ── -->
+    <connection from="west_in"  to="east_out"  fromLane="0" toLane="0"
+                tl="center" linkIndex="9"/>   <!-- straight      -->
+    <connection from="west_in"  to="south_out" fromLane="0" toLane="0"
+                tl="center" linkIndex="10"/>  <!-- right (→ S)  -->
+    <connection from="west_in"  to="north_out" fromLane="0" toLane="0"
+                tl="center" linkIndex="11"/>  <!-- left  (→ N)  -->
+
+</connections>

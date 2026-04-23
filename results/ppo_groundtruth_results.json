@@ -1,0 +1,164 @@
+{
+    "configuration": {
+        "algorithm": "PPO",
+        "total_timesteps": 200000,
+        "eval_episodes": 20,
+        "hyperparameters": {
+            "policy": "MlpPolicy",
+            "learning_rate": 0.0003,
+            "n_steps": 2048,
+            "batch_size": 64,
+            "n_epochs": 10,
+            "gamma": 0.99,
+            "clip_range": 0.2
+        }
+    },
+    "episode_results": [
+        {
+            "avg_waiting_time": 2.469,
+            "avg_queue_length": 0.658,
+            "throughput": 0,
+            "total_reward": -3127.0
+        },
+        {
+            "avg_waiting_time": 2.469,
+            "avg_queue_length": 0.658,
+            "throughput": 0,
+            "total_reward": -3127.0
+        },
+        {
+            "avg_waiting_time": 2.469,
+            "avg_queue_length": 0.658,
+            "throughput": 0,
+            "total_reward": -3127.0
+        },
+        {
+            "avg_waiting_time": 2.469,
+            "avg_queue_length": 0.658,
+            "throughput": 0,
+            "total_reward": -3127.0
+        },
+        {
+            "avg_waiting_time": 2.469,
+            "avg_queue_length": 0.658,
+            "throughput": 0,
+            "total_reward": -3127.0
+        },
+        {
+            "avg_waiting_time": 2.469,
+            "avg_queue_length": 0.658,
+            "throughput": 0,
+            "total_reward": -3127.0
+        },
+        {
+            "avg_waiting_time": 2.469,
+            "avg_queue_length": 0.658,
+            "throughput": 0,
+            "total_reward": -3127.0
+        },
+        {
+            "avg_waiting_time": 2.469,
+            "avg_queue_length": 0.658,
+            "throughput": 0,
+            "total_reward": -3127.0
+        },
+        {
+            "avg_waiting_time": 2.469,
+            "avg_queue_length": 0.658,
+            "throughput": 0,
+            "total_reward": -3127.0
+        },
+        {
+            "avg_waiting_time": 2.469,
+            "avg_queue_length": 0.658,
+            "throughput": 0,
+            "total_reward": -3127.0
+        },
+        {
+            "avg_waiting_time": 2.469,
+            "avg_queue_length": 0.658,
+            "throughput": 0,
+            "total_reward": -3127.0
+        },
+        {
+            "avg_waiting_time": 2.469,
+            "avg_queue_length": 0.658,
+            "throughput": 0,
+            "total_reward": -3127.0
+        },
+        {
+            "avg_waiting_time": 2.469,
+            "avg_queue_length": 0.658,
+            "throughput": 0,
+            "total_reward": -3127.0
+        },
+        {
+            "avg_waiting_time": 2.469,
+            "avg_queue_length": 0.658,
+            "throughput": 0,
+            "total_reward": -3127.0
+        },
+        {
+            "avg_waiting_time": 2.469,
+            "avg_queue_length": 0.658,
+            "throughput": 0,
+            "total_reward": -3127.0
+        },
+        {
+            "avg_waiting_time": 2.469,
+            "avg_queue_length": 0.658,
+            "throughput": 0,
+            "total_reward": -3127.0
+        },
+        {
+            "avg_waiting_time": 2.469,
+            "avg_queue_length": 0.658,
+            "throughput": 0,
+            "total_reward": -3127.0
+        },
+        {
+            "avg_waiting_time": 2.469,
+            "avg_queue_length": 0.658,
+            "throughput": 0,
+            "total_reward": -3127.0
+        },
+        {
+            "avg_waiting_time": 2.469,
+            "avg_queue_length": 0.658,
+            "throughput": 0,
+            "total_reward": -3127.0
+        },
+        {
+            "avg_waiting_time": 2.469,
+            "avg_queue_length": 0.658,
+            "throughput": 0,
+            "total_reward": -3127.0
+        }
+    ],
+    "summary": {
+        "avg_waiting_time": {
+            "mean": 2.4690000000000003,
+            "std": 4.440892098500626e-16,
+            "min": 2.469,
+            "max": 2.469
+        },
+        "avg_queue_length": {
+            "mean": 0.6579999999999999,
+            "std": 1.1102230246251565e-16,
+            "min": 0.658,
+            "max": 0.658
+        },
+        "throughput": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0,
+            "max": 0
+        },
+        "total_reward": {
+            "mean": -3127.0,
+            "std": 0.0,
+            "min": -3127.0,
+            "max": -3127.0
+        }
+    }
+}

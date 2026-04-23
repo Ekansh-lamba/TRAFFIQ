@@ -1,0 +1,165 @@
+{
+  "configuration": {
+    "algorithm": "PPO",
+    "condition": "C_ppo_classical_cv",
+    "total_timesteps": 200000,
+    "eval_episodes": 20,
+    "hyperparameters": {
+      "policy": "MlpPolicy",
+      "learning_rate": 0.0003,
+      "n_steps": 2048,
+      "batch_size": 64,
+      "n_epochs": 10,
+      "gamma": 0.99,
+      "clip_range": 0.2
+    }
+  },
+  "episode_results": [
+    {
+      "avg_waiting_time": 0.5,
+      "avg_queue_length": 0.5,
+      "throughput": 107,
+      "total_reward": -12928.0
+    },
+    {
+      "avg_waiting_time": 0.5,
+      "avg_queue_length": 0.5,
+      "throughput": 107,
+      "total_reward": -12928.0
+    },
+    {
+      "avg_waiting_time": 0.5,
+      "avg_queue_length": 0.5,
+      "throughput": 107,
+      "total_reward": -12928.0
+    },
+    {
+      "avg_waiting_time": 0.5,
+      "avg_queue_length": 0.5,
+      "throughput": 107,
+      "total_reward": -12928.0
+    },
+    {
+      "avg_waiting_time": 0.5,
+      "avg_queue_length": 0.5,
+      "throughput": 107,
+      "total_reward": -12928.0
+    },
+    {
+      "avg_waiting_time": 0.5,
+      "avg_queue_length": 0.5,
+      "throughput": 107,
+      "total_reward": -12928.0
+    },
+    {
+      "avg_waiting_time": 0.5,
+      "avg_queue_length": 0.5,
+      "throughput": 107,
+      "total_reward": -12928.0
+    },
+    {
+      "avg_waiting_time": 0.5,
+      "avg_queue_length": 0.5,
+      "throughput": 107,
+      "total_reward": -12928.0
+    },
+    {
+      "avg_waiting_time": 0.5,
+      "avg_queue_length": 0.5,
+      "throughput": 107,
+      "total_reward": -12928.0
+    },
+    {
+      "avg_waiting_time": 0.5,
+      "avg_queue_length": 0.5,
+      "throughput": 107,
+      "total_reward": -12928.0
+    },
+    {
+      "avg_waiting_time": 0.5,
+      "avg_queue_length": 0.5,
+      "throughput": 107,
+      "total_reward": -12928.0
+    },
+    {
+      "avg_waiting_time": 0.5,
+      "avg_queue_length": 0.5,
+      "throughput": 107,
+      "total_reward": -12928.0
+    },
+    {
+      "avg_waiting_time": 0.5,
+      "avg_queue_length": 0.5,
+      "throughput": 107,
+      "total_reward": -12928.0
+    },
+    {
+      "avg_waiting_time": 0.5,
+      "avg_queue_length": 0.5,
+      "throughput": 107,
+      "total_reward": -12928.0
+    },
+    {
+      "avg_waiting_time": 0.5,
+      "avg_queue_length": 0.5,
+      "throughput": 107,
+      "total_reward": -12928.0
+    },
+    {
+      "avg_waiting_time": 0.5,
+      "avg_queue_length": 0.5,
+      "throughput": 107,
+      "total_reward": -12928.0
+    },
+    {
+      "avg_waiting_time": 0.5,
+      "avg_queue_length": 0.5,
+      "throughput": 107,
+      "total_reward": -12928.0
+    },
+    {
+      "avg_waiting_time": 0.5,
+      "avg_queue_length": 0.5,
+      "throughput": 107,
+      "total_reward": -12928.0
+    },
+    {
+      "avg_waiting_time": 0.5,
+      "avg_queue_length": 0.5,
+      "throughput": 107,
+      "total_reward": -12928.0
+    },
+    {
+      "avg_waiting_time": 0.5,
+      "avg_queue_length": 0.5,
+      "throughput": 107,
+      "total_reward": -12928.0
+    }
+  ],
+  "summary": {
+    "avg_waiting_time": {
+      "mean": 0.5,
+      "std": 0.0,
+      "min": 0.5,
+      "max": 0.5
+    },
+    "avg_queue_length": {
+      "mean": 0.5,
+      "std": 0.0,
+      "min": 0.5,
+      "max": 0.5
+    },
+    "throughput": {
+      "mean": 107.0,
+      "std": 0.0,
+      "min": 107,
+      "max": 107
+    },
+    "total_reward": {
+      "mean": -12928.0,
+      "std": 0.0,
+      "min": -12928.0,
+      "max": -12928.0
+    }
+  }
+}

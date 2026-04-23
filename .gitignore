@@ -1,0 +1,92 @@
+# ============================================================
+# TRAFFIQ — Vision-Based Dynamic Traffic Signal Optimization
+# .gitignore
+# ============================================================
+
+# ─── Project Context (Internal, not for repo) ───────────────
+project_context_updated.md
+Prompt.txt
+
+# ─── Python ─────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+*.spec
+
+# ─── Virtual Environments ───────────────────────────────────
+.venv/
+env/
+venv/
+ENV/
+.env
+
+# ─── Jupyter ────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ─── Large Data Files ───────────────────────────────────────
+# Raw datasets — too large for git (use download_data.py to fetch)
+data/Intersection-traffic-detection.yolov8/
+data/Intersection-traffic-detection.yolov8.zip
+data/real_traffic_video.mp4
+data/charoenphool_images/
+data/intersection_images/
+# Only keep test split (30 images used in Step 11)
+data/real_images/train/
+data/real_images/valid/
+
+# ─── Archives ───────────────────────────────────────────────
+archive.zip
+files.zip
+files2.zip
+*.zip
+# Exception: trained model zips in results/ are small (≈145 KB each)
+!results/ppo_groundtruth_model.zip
+!results/ppo_classical_model.zip
+
+# ─── YOLOv8 Pretrained Weights ──────────────────────────────
+# Download from ultralytics at runtime — do not track
+yolov8n.pt
+yolov8s.pt
+yolov8*.pt
+*.pt
+*.pth
+*.onnx
+*.weights
+
+# ─── Results — Large / Auto-Generated ───────────────────────
+results/tensorboard_logs/
+results/checkpoints_ppo_*/
+results/best_ppo_*/
+results/real_world/annotated_images/
+results/real_world/*.mp4
+# Keep: results/*.json, results/plots/, results/real_world/*.json & *.jpg
+
+# ─── Screenshots & Debug Images ─────────────────────────────
+test_screenshot_zoomed.png
+
+# ─── OS / IDE ────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.suo
+*.user
+*.sln.docstates
+
+# ─── Logs ───────────────────────────────────────────────────
+*.log
+logs/
+
+# ─── Misc ───────────────────────────────────────────────────
+.gemini/
+*.tmp
+*.bak

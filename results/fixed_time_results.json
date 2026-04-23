@@ -1,0 +1,155 @@
+{
+    "configuration": {
+        "num_episodes": 20,
+        "phase_duration": 30,
+        "max_steps_per_episode": 1000
+    },
+    "episode_results": [
+        {
+            "avg_waiting_time": 17.824,
+            "avg_queue_length": 1.421,
+            "throughput": 0,
+            "total_reward": -19245.0
+        },
+        {
+            "avg_waiting_time": 17.824,
+            "avg_queue_length": 1.421,
+            "throughput": 0,
+            "total_reward": -19245.0
+        },
+        {
+            "avg_waiting_time": 17.824,
+            "avg_queue_length": 1.421,
+            "throughput": 0,
+            "total_reward": -19245.0
+        },
+        {
+            "avg_waiting_time": 17.824,
+            "avg_queue_length": 1.421,
+            "throughput": 0,
+            "total_reward": -19245.0
+        },
+        {
+            "avg_waiting_time": 17.824,
+            "avg_queue_length": 1.421,
+            "throughput": 0,
+            "total_reward": -19245.0
+        },
+        {
+            "avg_waiting_time": 17.824,
+            "avg_queue_length": 1.421,
+            "throughput": 0,
+            "total_reward": -19245.0
+        },
+        {
+            "avg_waiting_time": 17.824,
+            "avg_queue_length": 1.421,
+            "throughput": 0,
+            "total_reward": -19245.0
+        },
+        {
+            "avg_waiting_time": 17.824,
+            "avg_queue_length": 1.421,
+            "throughput": 0,
+            "total_reward": -19245.0
+        },
+        {
+            "avg_waiting_time": 17.824,
+            "avg_queue_length": 1.421,
+            "throughput": 0,
+            "total_reward": -19245.0
+        },
+        {
+            "avg_waiting_time": 17.824,
+            "avg_queue_length": 1.421,
+            "throughput": 0,
+            "total_reward": -19245.0
+        },
+        {
+            "avg_waiting_time": 17.824,
+            "avg_queue_length": 1.421,
+            "throughput": 0,
+            "total_reward": -19245.0
+        },
+        {
+            "avg_waiting_time": 17.824,
+            "avg_queue_length": 1.421,
+            "throughput": 0,
+            "total_reward": -19245.0
+        },
+        {
+            "avg_waiting_time": 17.824,
+            "avg_queue_length": 1.421,
+            "throughput": 0,
+            "total_reward": -19245.0
+        },
+        {
+            "avg_waiting_time": 17.824,
+            "avg_queue_length": 1.421,
+            "throughput": 0,
+            "total_reward": -19245.0
+        },
+        {
+            "avg_waiting_time": 17.824,
+            "avg_queue_length": 1.421,
+            "throughput": 0,
+            "total_reward": -19245.0
+        },
+        {
+            "avg_waiting_time": 17.824,
+            "avg_queue_length": 1.421,
+            "throughput": 0,
+            "total_reward": -19245.0
+        },
+        {
+            "avg_waiting_time": 17.824,
+            "avg_queue_length": 1.421,
+            "throughput": 0,
+            "total_reward": -19245.0
+        },
+        {
+            "avg_waiting_time": 17.824,
+            "avg_queue_length": 1.421,
+            "throughput": 0,
+            "total_reward": -19245.0
+        },
+        {
+            "avg_waiting_time": 17.824,
+            "avg_queue_length": 1.421,
+            "throughput": 0,
+            "total_reward": -19245.0
+        },
+        {
+            "avg_waiting_time": 17.824,
+            "avg_queue_length": 1.421,
+            "throughput": 0,
+            "total_reward": -19245.0
+        }
+    ],
+    "summary": {
+        "avg_waiting_time": {
+            "mean": 17.824000000000005,
+            "std": 3.552713678800501e-15,
+            "min": 17.824,
+            "max": 17.824
+        },
+        "avg_queue_length": {
+            "mean": 1.4209999999999998,
+            "std": 2.220446049250313e-16,
+            "min": 1.421,
+            "max": 1.421
+        },
+        "throughput": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0,
+            "max": 0
+        },
+        "total_reward": {
+            "mean": -19245.0,
+            "std": 0.0,
+            "min": -19245.0,
+            "max": -19245.0
+        }
+    }
+}

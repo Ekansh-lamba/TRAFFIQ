@@ -1,0 +1,581 @@
+{
+  "images_processed": 30,
+  "avg_vehicles_per_image": 13.633,
+  "ppo_fixed_agreement_pct": 33.33,
+  "ppo_smarter_decision_pct": 66.67,
+  "ppo_phase_distribution": {
+    "NS-Turn": 30
+  },
+  "image_results": [
+    {
+      "image": "file_mp4-0_jpg.rf.43d11ee760bce1cd38751fc0141ffa53.jpg",
+      "total_vehicles": 10,
+      "lane_counts": {
+        "lane_1": 6,
+        "lane_2": 1,
+        "lane_3": 2,
+        "lane_4": 1
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 0.2,
+        "lane_3": 0.4,
+        "lane_4": 0.2
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "NS-Straight",
+      "match": false
+    },
+    {
+      "image": "file_mp4-101_jpg.rf.0b13a1e482e0717a34aa7e07ee6eacbc.jpg",
+      "total_vehicles": 12,
+      "lane_counts": {
+        "lane_1": 6,
+        "lane_2": 2,
+        "lane_3": 1,
+        "lane_4": 3
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 0.4,
+        "lane_3": 0.2,
+        "lane_4": 0.6
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "NS-Straight",
+      "match": false
+    },
+    {
+      "image": "file_mp4-1022_jpg.rf.e4afbfd64d9a823c3966d23979fa082d.jpg",
+      "total_vehicles": 16,
+      "lane_counts": {
+        "lane_1": 8,
+        "lane_2": 4,
+        "lane_3": 2,
+        "lane_4": 2
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 0.8,
+        "lane_3": 0.4,
+        "lane_4": 0.4
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "NS-Straight",
+      "match": false
+    },
+    {
+      "image": "file_mp4-1031_jpg.rf.bc24f3048c1fa7d7ee0e7b10863fbc6c.jpg",
+      "total_vehicles": 11,
+      "lane_counts": {
+        "lane_1": 4,
+        "lane_2": 4,
+        "lane_3": 2,
+        "lane_4": 1
+      },
+      "normalized": {
+        "lane_1": 0.8,
+        "lane_2": 0.8,
+        "lane_3": 0.4,
+        "lane_4": 0.2
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "NS-Straight",
+      "match": false
+    },
+    {
+      "image": "file_mp4-1054_jpg.rf.1887e78f27fe6d4e7d839e6889a25b22.jpg",
+      "total_vehicles": 15,
+      "lane_counts": {
+        "lane_1": 6,
+        "lane_2": 5,
+        "lane_3": 2,
+        "lane_4": 2
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 1.0,
+        "lane_3": 0.4,
+        "lane_4": 0.4
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "NS-Straight",
+      "match": false
+    },
+    {
+      "image": "file_mp4-1066_jpg.rf.d8eca2318005f5e6b4f17c2f7e5bac42.jpg",
+      "total_vehicles": 15,
+      "lane_counts": {
+        "lane_1": 6,
+        "lane_2": 6,
+        "lane_3": 1,
+        "lane_4": 2
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 1.0,
+        "lane_3": 0.2,
+        "lane_4": 0.4
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "NS-Turn",
+      "match": true
+    },
+    {
+      "image": "file_mp4-1067_jpg.rf.035da344c98c776ee0593da4b5a2955b.jpg",
+      "total_vehicles": 16,
+      "lane_counts": {
+        "lane_1": 7,
+        "lane_2": 6,
+        "lane_3": 1,
+        "lane_4": 2
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 1.0,
+        "lane_3": 0.2,
+        "lane_4": 0.4
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "NS-Turn",
+      "match": true
+    },
+    {
+      "image": "file_mp4-1068_jpg.rf.0d62fa7830c76bef1219faf16b0ff45c.jpg",
+      "total_vehicles": 13,
+      "lane_counts": {
+        "lane_1": 6,
+        "lane_2": 6,
+        "lane_3": 0,
+        "lane_4": 1
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 1.0,
+        "lane_3": 0.0,
+        "lane_4": 0.2
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "NS-Turn",
+      "match": true
+    },
+    {
+      "image": "file_mp4-1071_jpg.rf.ae950bbc5c2ee2c27a77051ad0be6162.jpg",
+      "total_vehicles": 15,
+      "lane_counts": {
+        "lane_1": 7,
+        "lane_2": 6,
+        "lane_3": 1,
+        "lane_4": 1
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 1.0,
+        "lane_3": 0.2,
+        "lane_4": 0.2
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "NS-Turn",
+      "match": true
+    },
+    {
+      "image": "file_mp4-1079_jpg.rf.9c3dad3868abc77bec4282475446bc19.jpg",
+      "total_vehicles": 16,
+      "lane_counts": {
+        "lane_1": 7,
+        "lane_2": 6,
+        "lane_3": 1,
+        "lane_4": 2
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 1.0,
+        "lane_3": 0.2,
+        "lane_4": 0.4
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "NS-Turn",
+      "match": true
+    },
+    {
+      "image": "file_mp4-1081_jpg.rf.2f69f49ae7fc95f8568932c207c26f04.jpg",
+      "total_vehicles": 14,
+      "lane_counts": {
+        "lane_1": 8,
+        "lane_2": 4,
+        "lane_3": 0,
+        "lane_4": 2
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 0.8,
+        "lane_3": 0.0,
+        "lane_4": 0.4
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "EW-Straight",
+      "match": false
+    },
+    {
+      "image": "file_mp4-1085_jpg.rf.c842887e761098f62164f4265ea07dbd.jpg",
+      "total_vehicles": 17,
+      "lane_counts": {
+        "lane_1": 8,
+        "lane_2": 8,
+        "lane_3": 0,
+        "lane_4": 1
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 1.0,
+        "lane_3": 0.0,
+        "lane_4": 0.2
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "EW-Straight",
+      "match": false
+    },
+    {
+      "image": "file_mp4-1094_jpg.rf.8e87f77858ff5c301fb85f4174c4a2c7.jpg",
+      "total_vehicles": 16,
+      "lane_counts": {
+        "lane_1": 7,
+        "lane_2": 7,
+        "lane_3": 0,
+        "lane_4": 2
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 1.0,
+        "lane_3": 0.0,
+        "lane_4": 0.4
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "EW-Straight",
+      "match": false
+    },
+    {
+      "image": "file_mp4-1111_jpg.rf.bac8221f495581aab1501a4203f051be.jpg",
+      "total_vehicles": 14,
+      "lane_counts": {
+        "lane_1": 7,
+        "lane_2": 5,
+        "lane_3": 0,
+        "lane_4": 2
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 1.0,
+        "lane_3": 0.0,
+        "lane_4": 0.4
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "EW-Straight",
+      "match": false
+    },
+    {
+      "image": "file_mp4-1118_jpg.rf.4dc343392e42b584da3a1b8bfc9730fe.jpg",
+      "total_vehicles": 14,
+      "lane_counts": {
+        "lane_1": 5,
+        "lane_2": 6,
+        "lane_3": 1,
+        "lane_4": 2
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 1.0,
+        "lane_3": 0.2,
+        "lane_4": 0.4
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "EW-Straight",
+      "match": false
+    },
+    {
+      "image": "file_mp4-1152_jpg.rf.a744e47a0488b3c34ee72c99c5e8f04c.jpg",
+      "total_vehicles": 13,
+      "lane_counts": {
+        "lane_1": 4,
+        "lane_2": 5,
+        "lane_3": 1,
+        "lane_4": 3
+      },
+      "normalized": {
+        "lane_1": 0.8,
+        "lane_2": 1.0,
+        "lane_3": 0.2,
+        "lane_4": 0.6
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "EW-Turn",
+      "match": false
+    },
+    {
+      "image": "file_mp4-1165_jpg.rf.3209409522300b16565797db21bdb2d3.jpg",
+      "total_vehicles": 14,
+      "lane_counts": {
+        "lane_1": 5,
+        "lane_2": 7,
+        "lane_3": 0,
+        "lane_4": 2
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 1.0,
+        "lane_3": 0.0,
+        "lane_4": 0.4
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "EW-Turn",
+      "match": false
+    },
+    {
+      "image": "file_mp4-1166_jpg.rf.76b49dea053102e5ffdc9c960f317e9d.jpg",
+      "total_vehicles": 13,
+      "lane_counts": {
+        "lane_1": 5,
+        "lane_2": 7,
+        "lane_3": 0,
+        "lane_4": 1
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 1.0,
+        "lane_3": 0.0,
+        "lane_4": 0.2
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "EW-Turn",
+      "match": false
+    },
+    {
+      "image": "file_mp4-1173_jpg.rf.6e8081d6238a65239e24c0b4c0b7bd43.jpg",
+      "total_vehicles": 15,
+      "lane_counts": {
+        "lane_1": 6,
+        "lane_2": 7,
+        "lane_3": 1,
+        "lane_4": 1
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 1.0,
+        "lane_3": 0.2,
+        "lane_4": 0.2
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "EW-Turn",
+      "match": false
+    },
+    {
+      "image": "file_mp4-1179_jpg.rf.2f8889745a86d29cc704c315aae28d08.jpg",
+      "total_vehicles": 14,
+      "lane_counts": {
+        "lane_1": 5,
+        "lane_2": 6,
+        "lane_3": 2,
+        "lane_4": 1
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 1.0,
+        "lane_3": 0.4,
+        "lane_4": 0.2
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "EW-Turn",
+      "match": false
+    },
+    {
+      "image": "file_mp4-1181_jpg.rf.9486e26c214b420cfa4941c6520efd91.jpg",
+      "total_vehicles": 11,
+      "lane_counts": {
+        "lane_1": 4,
+        "lane_2": 6,
+        "lane_3": 1,
+        "lane_4": 0
+      },
+      "normalized": {
+        "lane_1": 0.8,
+        "lane_2": 1.0,
+        "lane_3": 0.2,
+        "lane_4": 0.0
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "NS-Straight",
+      "match": false
+    },
+    {
+      "image": "file_mp4-1191_jpg.rf.8ee038c73e1bede10eea1ea79fbcdda0.jpg",
+      "total_vehicles": 17,
+      "lane_counts": {
+        "lane_1": 9,
+        "lane_2": 6,
+        "lane_3": 1,
+        "lane_4": 1
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 1.0,
+        "lane_3": 0.2,
+        "lane_4": 0.2
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "NS-Straight",
+      "match": false
+    },
+    {
+      "image": "file_mp4-1194_jpg.rf.efcb3f7b24558549ffce08d57d54134c.jpg",
+      "total_vehicles": 15,
+      "lane_counts": {
+        "lane_1": 7,
+        "lane_2": 4,
+        "lane_3": 2,
+        "lane_4": 2
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 0.8,
+        "lane_3": 0.4,
+        "lane_4": 0.4
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "NS-Straight",
+      "match": false
+    },
+    {
+      "image": "file_mp4-1203_jpg.rf.f63ad1cbed2603a073062f5d83caebb8.jpg",
+      "total_vehicles": 12,
+      "lane_counts": {
+        "lane_1": 6,
+        "lane_2": 5,
+        "lane_3": 1,
+        "lane_4": 0
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 1.0,
+        "lane_3": 0.2,
+        "lane_4": 0.0
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "NS-Straight",
+      "match": false
+    },
+    {
+      "image": "file_mp4-1207_jpg.rf.065d2e78b4d13ac54b076d6877a953b3.jpg",
+      "total_vehicles": 12,
+      "lane_counts": {
+        "lane_1": 6,
+        "lane_2": 6,
+        "lane_3": 0,
+        "lane_4": 0
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 1.0,
+        "lane_3": 0.0,
+        "lane_4": 0.0
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "NS-Straight",
+      "match": false
+    },
+    {
+      "image": "file_mp4-159_jpg.rf.74222df67e3efdcd369a2f8be840da0e.jpg",
+      "total_vehicles": 13,
+      "lane_counts": {
+        "lane_1": 6,
+        "lane_2": 3,
+        "lane_3": 1,
+        "lane_4": 3
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 0.6,
+        "lane_3": 0.2,
+        "lane_4": 0.6
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "NS-Turn",
+      "match": true
+    },
+    {
+      "image": "file_mp4-165_jpg.rf.e3b1ba9b4c816044509d730c18e4b13a.jpg",
+      "total_vehicles": 12,
+      "lane_counts": {
+        "lane_1": 5,
+        "lane_2": 4,
+        "lane_3": 1,
+        "lane_4": 2
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 0.8,
+        "lane_3": 0.2,
+        "lane_4": 0.4
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "NS-Turn",
+      "match": true
+    },
+    {
+      "image": "file_mp4-172_jpg.rf.3a197676caa91010a6d66a5ea9ee764a.jpg",
+      "total_vehicles": 10,
+      "lane_counts": {
+        "lane_1": 3,
+        "lane_2": 3,
+        "lane_3": 2,
+        "lane_4": 2
+      },
+      "normalized": {
+        "lane_1": 0.6,
+        "lane_2": 0.6,
+        "lane_3": 0.4,
+        "lane_4": 0.4
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "NS-Turn",
+      "match": true
+    },
+    {
+      "image": "file_mp4-179_jpg.rf.826b1f9507bbc1d1f8e8d8843627e719.jpg",
+      "total_vehicles": 13,
+      "lane_counts": {
+        "lane_1": 6,
+        "lane_2": 3,
+        "lane_3": 2,
+        "lane_4": 2
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 0.6,
+        "lane_3": 0.4,
+        "lane_4": 0.4
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "NS-Turn",
+      "match": true
+    },
+    {
+      "image": "file_mp4-191_jpg.rf.0378f7095797fc712a7afc1f08ef46cd.jpg",
+      "total_vehicles": 11,
+      "lane_counts": {
+        "lane_1": 5,
+        "lane_2": 3,
+        "lane_3": 1,
+        "lane_4": 2
+      },
+      "normalized": {
+        "lane_1": 1.0,
+        "lane_2": 0.6,
+        "lane_3": 0.2,
+        "lane_4": 0.4
+      },
+      "ppo_phase": "NS-Turn",
+      "fixed_phase": "NS-Turn",
+      "match": true
+    }
+  ]
+}

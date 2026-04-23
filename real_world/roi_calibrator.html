@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROI Zone Calibrator</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0e0f11;
+    --surface: #16181c;
+    --border: #2a2d33;
+    --text: #e8eaf0;
+    --muted: #6b7280;
+    --accent: #3b82f6;
+
+    --c1: #22c55e;   /* lane_1 green */
+    --c2: #f59e0b;   /* lane_2 yellow */
+    --c3: #60a5fa;   /* lane_3 blue */
+    --c4: #e879f9;   /* lane_4 magenta */
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    padding: 14px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--surface);
+  }
+
+  header h1 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+  }
+
+  header span {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .layout {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* ── LEFT: canvas area ── */
+  .canvas-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    gap: 16px;
+    overflow: hidden;
+  }
+
+  .drop-zone {
+    width: 100%;
+    max-width: 800px;
+    height: 320px;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .drop-zone:hover { border-color: var(--accent); background: rgba(59,130,246,0.04); }
+  .drop-zone p { font-size: 14px; color: var(--muted); }
+  .drop-zone .icon { font-size: 40px; opacity: 0.4; }
+  .drop-zone input { display: none; }
+
+  .canvas-wrap {
+    position: relative;
+    display: none;
+    cursor: crosshair;
+    user-select: none;
+  }
+  .canvas-wrap canvas { display: block; border-radius: 8px; }
+
+  .instructions {
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+  }
+  .instructions b { color: var(--text); font-weight: 500; }
+
+  /* ── RIGHT: sidebar ── */
+  .sidebar {
+    width: 300px;
+    border-left: 1px solid var(--border);
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .sidebar-section {
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sidebar-section h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .lane-cards { display: flex; flex-direction: column; gap: 8px; }
+
+  .lane-card {
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .lane-card:hover { background: rgba(255,255,255,0.03); }
+  .lane-card.active { background: rgba(255,255,255,0.05); }
+
+  .lane-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .lane-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .lane-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    flex: 1;
+  }
+
+  .lane-desc {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    padding-left: 18px;
+  }
+
+  .lane-coords {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    padding-left: 18px;
+    line-height: 1.8;
+  }
+
+  .lane-coords span { color: var(--text); }
+
+  .clear-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    border-radius: 4px;
+    padding: 2px 8px;
+    cursor: pointer;
+    float: right;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .clear-btn:hover { color: #ef4444; border-color: #ef4444; }
+
+  /* ── Code output ── */
+  .code-section { padding: 16px; flex: 1; display: flex; flex-direction: column; }
+  .code-section h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .code-box {
+    background: #0a0b0d;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    line-height: 1.7;
+    color: #a5b4fc;
+    white-space: pre;
+    overflow-x: auto;
+    flex: 1;
+    min-height: 120px;
+  }
+
+  .copy-btn {
+    margin-top: 10px;
+    width: 100%;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 9px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .copy-btn:hover { background: #2563eb; }
+  .copy-btn:active { transform: scale(0.98); }
+  .copy-btn.copied { background: #16a34a; }
+
+  .hint {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+
+  /* active lane highlight */
+  .lane-card[data-lane="lane_1"].active { border-color: var(--c1); }
+  .lane-card[data-lane="lane_2"].active { border-color: var(--c2); }
+  .lane-card[data-lane="lane_3"].active { border-color: var(--c3); }
+  .lane-card[data-lane="lane_4"].active { border-color: var(--c4); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>ROI CALIBRATOR</h1>
+  <span>Draw zones directly on your traffic image → get_rois() code</span>
+</header>
+
+<div class="layout">
+
+  <!-- CANVAS -->
+  <div class="canvas-area">
+    <div class="drop-zone" id="dropZone">
+      <div class="icon">🖼</div>
+      <p>Click to load your debug image</p>
+      <p style="font-size:11px">roi_debug_v3.jpg or any traffic image</p>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <div class="canvas-wrap" id="canvasWrap">
+      <canvas id="canvas"></canvas>
+    </div>
+
+    <div class="instructions" id="instructions" style="display:none">
+      <b>Click a lane in the sidebar</b> → then <b>click + drag on the image</b> to draw its zone &nbsp;|&nbsp;
+      Drag <b>corners</b> or <b>edges</b> to resize &nbsp;|&nbsp; <b>Drag inside</b> to move
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-section">
+      <h2>Lanes — click to select, then draw</h2>
+      <div class="lane-cards">
+
+        <div class="lane-card" data-lane="lane_1" onclick="selectLane('lane_1')">
+          <div class="lane-card-header">
+            <div class="lane-dot" style="background:var(--c1)"></div>
+            <span class="lane-name" style="color:var(--c1)">lane_1</span>
+            <button class="clear-btn" onclick="clearLane(event,'lane_1')">clear</button>
+          </div>
+          <div class="lane-desc">Main-Ahead — bus / cars going away</div>
+          <div class="lane-coords" id="coords_lane_1">not drawn yet</div>
+        </div>
+
+        <div class="lane-card" data-lane="lane_2" onclick="selectLane('lane_2')">
+          <div class="lane-card-header">
+            <div class="lane-dot" style="background:var(--c2)"></div>
+            <span class="lane-name" style="color:var(--c2)">lane_2</span>
+            <button class="clear-btn" onclick="clearLane(event,'lane_2')">clear</button>
+          </div>
+          <div class="lane-desc">Main-Behind — road toward camera</div>
+          <div class="lane-coords" id="coords_lane_2">not drawn yet</div>
+        </div>
+
+        <div class="lane-card" data-lane="lane_3" onclick="selectLane('lane_3')">
+          <div class="lane-card-header">
+            <div class="lane-dot" style="background:var(--c3)"></div>
+            <span class="lane-name" style="color:var(--c3)">lane_3</span>
+            <button class="clear-btn" onclick="clearLane(event,'lane_3')">clear</button>
+          </div>
+          <div class="lane-desc">Branch-Left — white car / side road</div>
+          <div class="lane-coords" id="coords_lane_3">not drawn yet</div>
+        </div>
+
+        <div class="lane-card" data-lane="lane_4" onclick="selectLane('lane_4')">
+          <div class="lane-card-header">
+            <div class="lane-dot" style="background:var(--c4)"></div>
+            <span class="lane-name" style="color:var(--c4)">lane_4</span>
+            <button class="clear-btn" onclick="clearLane(event,'lane_4')">clear</button>
+          </div>
+          <div class="lane-desc">Branch-Right — small road peek</div>
+          <div class="lane-coords" id="coords_lane_4">not drawn yet</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="code-section">
+      <h2>get_rois() — copy into real_data_demo.py</h2>
+      <div class="code-box" id="codeBox">draw all 4 zones
+to generate code</div>
+      <button class="copy-btn" id="copyBtn" onclick="copyCode()">Copy Code</button>
+      <p class="hint">After copying, replace the get_rois() function in real_data_demo.py and real_world/debug_roi.py</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const COLORS = {
+  lane_1: { hex: '#22c55e', rgba: 'rgba(34,197,94,' },
+  lane_2: { hex: '#f59e0b', rgba: 'rgba(245,158,11,' },
+  lane_3: { hex: '#60a5fa', rgba: 'rgba(96,165,250,' },
+  lane_4: { hex: '#e879f9', rgba: 'rgba(232,121,249,' },
+};
+
+const LANE_ORDER = ['lane_1','lane_2','lane_3','lane_4'];
+
+let img = null;
+let imgW = 0, imgH = 0;          // original image dimensions
+let canvasScale = 1;             // canvas px / image px
+let zones = { lane_1:null, lane_2:null, lane_3:null, lane_4:null };
+let activeLane = 'lane_1';
+
+// interaction state
+let isDrawing = false;
+let isDragging = false;
+let isResizing = false;
+let dragStart = null;
+let resizeHandle = null;  // 'tl','tr','bl','br','t','b','l','r'
+let resizeLane = null;
+let dragLane = null;
+let origZone = null;
+
+const canvas  = document.getElementById('canvas');
+const ctx     = canvas.getContext('2d');
+const wrap    = document.getElementById('canvasWrap');
+const dropZ   = document.getElementById('dropZone');
+const fileIn  = document.getElementById('fileInput');
+
+// ── File loading ──────────────────────────────────────────────────────────
+
+dropZ.addEventListener('click', () => fileIn.click());
+fileIn.addEventListener('change', e => loadFile(e.target.files[0]));
+dropZ.addEventListener('dragover', e => { e.preventDefault(); dropZ.style.borderColor='#3b82f6'; });
+dropZ.addEventListener('dragleave', () => dropZ.style.borderColor='');
+dropZ.addEventListener('drop', e => { e.preventDefault(); loadFile(e.dataTransfer.files[0]); });
+
+function loadFile(file) {
+  if (!file) return;
+  const url = URL.createObjectURL(file);
+  const i   = new Image();
+  i.onload  = () => {
+    img  = i;
+    imgW = i.naturalWidth;
+    imgH = i.naturalHeight;
+    setupCanvas();
+    dropZ.style.display    = 'none';
+    wrap.style.display     = 'block';
+    document.getElementById('instructions').style.display = 'block';
+    selectLane('lane_1');
+    render();
+  };
+  i.src = url;
+}
+
+function setupCanvas() {
+  const maxW = Math.min(wrap.parentElement.clientWidth - 48, 860);
+  const maxH = Math.min(window.innerHeight - 160, 680);
+  canvasScale = Math.min(maxW / imgW, maxH / imgH);
+  canvas.width  = Math.round(imgW * canvasScale);
+  canvas.height = Math.round(imgH * canvasScale);
+}
+
+// ── Lane selection ────────────────────────────────────────────────────────
+
+function selectLane(lane) {
+  activeLane = lane;
+  document.querySelectorAll('.lane-card').forEach(c => c.classList.remove('active'));
+  document.querySelector(`.lane-card[data-lane="${lane}"]`).classList.add('active');
+  canvas.style.cursor = 'crosshair';
+}
+
+function clearLane(e, lane) {
+  e.stopPropagation();
+  zones[lane] = null;
+  document.getElementById(`coords_${lane}`).textContent = 'not drawn yet';
+  updateCode();
+  render();
+}
+
+// ── Canvas mouse events ───────────────────────────────────────────────────
+
+function canvasPos(e) {
+  const r = canvas.getBoundingClientRect();
+  return {
+    x: (e.clientX - r.left) / canvasScale,
+    y: (e.clientY - r.top)  / canvasScale
+  };
+}
+
+function getHandle(pos, zone) {
+  if (!zone) return null;
+  const { x, y, w, h } = zone;
+  const T = 10 / canvasScale;   // touch tolerance in image px
+  const cx = x + w, cy = y + h;
+  const mx = x + w/2, my = y + h/2;
+
+  if (Math.abs(pos.x-x)<T && Math.abs(pos.y-y)<T) return 'tl';
+  if (Math.abs(pos.x-cx)<T && Math.abs(pos.y-y)<T) return 'tr';
+  if (Math.abs(pos.x-x)<T && Math.abs(pos.y-cy)<T) return 'bl';
+  if (Math.abs(pos.x-cx)<T && Math.abs(pos.y-cy)<T) return 'br';
+  if (Math.abs(pos.y-y)<T && pos.x>x+T && pos.x<cx-T) return 't';
+  if (Math.abs(pos.y-cy)<T && pos.x>x+T && pos.x<cx-T) return 'b';
+  if (Math.abs(pos.x-x)<T && pos.y>y+T && pos.y<cy-T) return 'l';
+  if (Math.abs(pos.x-cx)<T && pos.y>y+T && pos.y<cy-T) return 'r';
+  if (pos.x>x+T && pos.x<cx-T && pos.y>y+T && pos.y<cy-T) return 'move';
+  return null;
+}
+
+function getCursorForHandle(h) {
+  const map = { tl:'nw-resize', tr:'ne-resize', bl:'sw-resize', br:'se-resize',
+                t:'n-resize', b:'s-resize', l:'w-resize', r:'e-resize', move:'move' };
+  return map[h] || 'crosshair';
+}
+
+canvas.addEventListener('mousemove', e => {
+  const pos = canvasPos(e);
+
+  if (isDrawing) {
+    const z = zones[activeLane];
+    z.w = pos.x - z.x;
+    z.h = pos.y - z.y;
+    render();
+    return;
+  }
+
+  if (isDragging) {
+    const dx = pos.x - dragStart.x, dy = pos.y - dragStart.y;
+    zones[dragLane].x = Math.max(0, Math.min(imgW - origZone.w, origZone.x + dx));
+    zones[dragLane].y = Math.max(0, Math.min(imgH - origZone.h, origZone.y + dy));
+    updateCoords(dragLane);
+    updateCode();
+    render();
+    return;
+  }
+
+  if (isResizing) {
+    applyResize(resizeLane, resizeHandle, pos);
+    updateCoords(resizeLane);
+    updateCode();
+    render();
+    return;
+  }
+
+  // hover cursor
+  for (const lane of LANE_ORDER) {
+    const h = getHandle(pos, zones[lane]);
+    if (h) { canvas.style.cursor = getCursorForHandle(h); return; }
+  }
+  canvas.style.cursor = 'crosshair';
+});
+
+canvas.addEventListener('mousedown', e => {
+  if (!img) return;
+  const pos = canvasPos(e);
+
+  // check existing zones for handles (reverse order = top first)
+  for (const lane of [...LANE_ORDER].reverse()) {
+    const h = getHandle(pos, zones[lane]);
+    if (!h) continue;
+    if (h === 'move') {
+      isDragging = true;
+      dragLane   = lane;
+      dragStart  = { x: pos.x, y: pos.y };
+      origZone   = { ...zones[lane] };
+    } else {
+      isResizing    = true;
+      resizeLane    = lane;
+      resizeHandle  = h;
+      dragStart     = { x: pos.x, y: pos.y };
+      origZone      = { ...zones[lane] };
+    }
+    selectLane(lane);
+    return;
+  }
+
+  // start new draw
+  isDrawing = true;
+  zones[activeLane] = { x: pos.x, y: pos.y, w: 0, h: 0 };
+});
+
+canvas.addEventListener('mouseup', e => {
+  if (isDrawing) {
+    const z = zones[activeLane];
+    if (z) {
+      // normalise negative w/h
+      if (z.w < 0) { z.x += z.w; z.w = -z.w; }
+      if (z.h < 0) { z.y += z.h; z.h = -z.h; }
+      if (z.w < 4 || z.h < 4) { zones[activeLane] = null; }
+      else { updateCoords(activeLane); updateCode(); }
+    }
+  }
+  isDrawing = isDragging = isResizing = false;
+  dragStart = resizeHandle = resizeLane = dragLane = origZone = null;
+  render();
+});
+
+canvas.addEventListener('mouseleave', () => {
+  if (isDrawing) {
+    const z = zones[activeLane];
+    if (z && (z.w < 4 || z.h < 4)) zones[activeLane] = null;
+    updateCode(); render();
+  }
+  isDrawing = isDragging = isResizing = false;
+});
+
+function applyResize(lane, handle, pos) {
+  const z  = zones[lane];
+  const o  = origZone;
+  const dx = pos.x - dragStart.x;
+  const dy = pos.y - dragStart.y;
+  let { x, y, w, h } = o;
+
+  if (handle.includes('l')) { x = Math.min(o.x+o.w-4, o.x+dx); w = o.w - (x-o.x); }
+  if (handle.includes('r')) { w = Math.max(4, o.w+dx); }
+  if (handle.includes('t')) { y = Math.min(o.y+o.h-4, o.y+dy); h = o.h - (y-o.y); }
+  if (handle.includes('b')) { h = Math.max(4, o.h+dy); }
+
+  x = Math.max(0, Math.min(imgW-4, x));
+  y = Math.max(0, Math.min(imgH-4, y));
+  w = Math.min(w, imgW-x);
+  h = Math.min(h, imgH-y);
+
+  zones[lane] = { x, y, w, h };
+}
+
+// ── Render ────────────────────────────────────────────────────────────────
+
+function render() {
+  if (!img) return;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.save();
+  ctx.scale(canvasScale, canvasScale);
+  ctx.drawImage(img, 0, 0);
+
+  for (const lane of LANE_ORDER) {
+    const z = zones[lane];
+    if (!z || z.w === 0 || z.h === 0) continue;
+    const col = COLORS[lane];
+
+    // fill
+    ctx.fillStyle = col.rgba + '0.18)';
+    ctx.fillRect(z.x, z.y, z.w, z.h);
+
+    // border
+    ctx.strokeStyle = col.hex;
+    ctx.lineWidth   = 2 / canvasScale;
+    ctx.strokeRect(z.x, z.y, z.w, z.h);
+
+    // label
+    const lbl  = lane + ' (' + pct(z.x,imgW) + '% ' + pct(z.y,imgH) + '%)';
+    const fs   = Math.max(10, 13 / canvasScale);
+    ctx.font   = `600 ${fs}px 'DM Sans', sans-serif`;
+    ctx.fillStyle  = col.hex;
+    ctx.fillText(lbl, z.x + 5/canvasScale, z.y + fs + 4/canvasScale);
+
+    // handles
+    if (lane === activeLane) {
+      const hSize = 7 / canvasScale;
+      const cx    = z.x + z.w, cy = z.y + z.h;
+      const handles = [
+        [z.x, z.y], [cx, z.y], [z.x, cy], [cx, cy],
+        [z.x+z.w/2, z.y], [z.x+z.w/2, cy],
+        [z.x, z.y+z.h/2], [cx, z.y+z.h/2]
+      ];
+      ctx.fillStyle   = '#ffffff';
+      ctx.strokeStyle = col.hex;
+      ctx.lineWidth   = 1.5 / canvasScale;
+      for (const [hx,hy] of handles) {
+        ctx.beginPath();
+        ctx.arc(hx, hy, hSize/2, 0, Math.PI*2);
+        ctx.fill(); ctx.stroke();
+      }
+    }
+  }
+  ctx.restore();
+}
+
+// ── Coord helpers ─────────────────────────────────────────────────────────
+
+function pct(val, total) { return (val/total*100).toFixed(1); }
+
+function updateCoords(lane) {
+  const z = zones[lane];
+  if (!z) { document.getElementById(`coords_${lane}`).textContent = 'not drawn yet'; return; }
+  const xp = pct(z.x,imgW), yp = pct(z.y,imgH);
+  const wp = pct(z.w,imgW), hp = pct(z.h,imgH);
+  document.getElementById(`coords_${lane}`).innerHTML =
+    `x=<span>${xp}%</span>  y=<span>${yp}%</span><br>w=<span>${wp}%</span>  h=<span>${hp}%</span><br>px: (${Math.round(z.x)},${Math.round(z.y)}) ${Math.round(z.w)}×${Math.round(z.h)}`;
+}
+
+function updateCode() {
+  const all = LANE_ORDER.every(l => zones[l] && zones[l].w > 4);
+  if (!all) {
+    document.getElementById('codeBox').textContent = 'draw all 4 zones\nto generate code';
+    return;
+  }
+
+  const fmt = (val, total) => (val/total).toFixed(4);
+  const lines = LANE_ORDER.map(lane => {
+    const z = zones[lane];
+    const nx = fmt(z.x, imgW), ny = fmt(z.y, imgH);
+    const nw = fmt(z.w, imgW), nh = fmt(z.h, imgH);
+    return `        "${lane}": {\n            "x": int(w * ${nx}), "y": int(h * ${ny}),\n            "w": int(w * ${nw}), "h": int(h * ${nh}),\n        },`;
+  }).join('\n');
+
+  document.getElementById('codeBox').textContent =
+`def get_rois(h, w):
+    return {
+${lines}
+    }`;
+}
+
+function copyCode() {
+  const code = document.getElementById('codeBox').textContent;
+  if (code.startsWith('draw')) return;
+  navigator.clipboard.writeText(code).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy Code'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// auto-select lane_1 on load
+selectLane('lane_1');
+</script>
+</body>
+</html>
