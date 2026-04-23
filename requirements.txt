@@ -1,0 +1,33 @@
+# ============================================================
+# TRAFFIQ — Requirements
+# Python 3.10 recommended
+# Install: pip install -r requirements.txt
+#
+# NOTE: SUMO 1.25 must be installed separately.
+# Download from: https://sumo.dlr.de/docs/Downloads.php
+# TraCI is bundled with SUMO (not pip-installable).
+# ============================================================
+
+# ── Reinforcement Learning ───────────────────────────────────
+stable-baselines3>=2.0.0
+gymnasium>=0.29.0
+
+# ── Deep Learning (PyTorch — CPU build; replace cu118 for GPU) ──
+torch>=2.0.0
+torchvision>=0.15.0
+
+# ── Computer Vision ──────────────────────────────────────────
+opencv-python>=4.8.0
+ultralytics>=8.0.0          # YOLOv8
+
+# ── Data / Numerics ──────────────────────────────────────────
+numpy>=1.24.0
+
+# ── Visualization ────────────────────────────────────────────
+matplotlib>=3.7.0
+tensorboard>=2.13.0
+
+# ── Screenshot capture (Condition C — GUI training) ──────────
+Pillow>=10.0.0
+mss>=9.0.0
+pygetwindow>=0.0.9
